@@ -7,6 +7,8 @@ import Timeline from '../components/TimeLine/TimeLine';
 import { Layout } from '../layout/Layout';
 import { Section } from '../styles/GlobalComponents';
 
+import Chatbot from '../components/Chatbot/Chatbot';
+
 const Home = () => {
   return (
     <Layout>
@@ -14,6 +16,9 @@ const Home = () => {
         <Hero />
          <BgAnimation />
        </Section>
+
+       <Chatbot />
+
       <Projects />
       <Technologies />
       <Timeline />
