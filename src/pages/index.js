@@ -12,13 +12,11 @@ import Chatbot from '../components/Chatbot/Chatbot';
 const Home = () => {
   return (
     <Layout>
-       <Section grid>
+      <Section grid>
         <Hero />
-         <BgAnimation />
-       </Section>
-
-       <Chatbot />
-
+        <BgAnimation />
+      </Section>
+      <Chatbot />
       <Projects />
       <Technologies />
       <Timeline />

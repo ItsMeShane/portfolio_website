@@ -12,16 +12,12 @@ export const ChatbotContainer = styled.div`
 `;
 
 
-
-/*
-*/
-
-
-
 export const Chatbox = styled.div`
 flex: 1;
 padding: 15px;
-height: 400px;
+max-height: 400px;
+min-height: 400px;
+// height: 400px;
 
 overflow-y: auto;
 scroll-behavior: smooth; /* Enable smooth scrolling behavior */

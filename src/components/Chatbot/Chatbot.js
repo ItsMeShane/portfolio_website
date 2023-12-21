@@ -9,12 +9,26 @@ const Chatbot = () => {
   ]);
 
   const [newMessage, setNewMessage] = useState('');
+  const [placeholderIndex, setPlaceholderIndex] = useState(0); // Track the current index of the placeholder
   const chatboxRef = useRef(null);
+  const placeholderTexts = [
+    "Tell me about Shane's work experience.",
+    "What kind of projects has Shane worked on?",
+    "Tell me about this website.",
+    "How can I contact Shane?",
+    "Ask me anything!",
+  ];
 
   const openai = new OpenAI({
     apiKey: 'API_KEY_HERE',
     dangerouslyAllowBrowser: true,
   });
+
+  const getRandomPlaceholder = () => {
+    const newIndex = Math.floor(Math.random() * placeholderTexts.length);
+    setPlaceholderIndex(newIndex);
+    return placeholderTexts[newIndex];
+  };
 
   const handleSendMessage = async () => {
     if (newMessage.trim() === '') {
@@ -61,9 +75,10 @@ const Chatbot = () => {
 
       // If an assistant message is found, update state with the response
       if (lastMessageForRun) {
-        const assistantResponse = lastMessageForRun.content[0].text.value;
+        const assistantResponse = lastMessageForRun.content[0].text.value.replaceAll(/【.*?】/g, '');
         setMessages([...newMessages, { id: newMessages.length + 1, text: assistantResponse, type: 'incoming' }]);
       }
+
     } catch (error) {
       console.error(error);
     }
@@ -80,9 +95,13 @@ const Chatbot = () => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault(); // Enter submits message // Shift+Enter adds new line
       handleSendMessage();
+
+      if (document.getElementById('txtArea').textContent.trim() != "") {
+        getRandomPlaceholder();
+      }
     }
   };
-  
+
   return (
     <Section>
       <SectionTitle>Talk To Me!</SectionTitle>
@@ -96,8 +115,8 @@ const Chatbot = () => {
         </Chatbox>
 
         <ChatInput>
-          <StyledTextarea
-            placeholder="Enter a message..."
+          <StyledTextarea id="txtArea"
+            placeholder={newMessage.trim() === '' ? placeholderTexts[placeholderIndex] : ''} // Use random placeholder only when the input is empty
             spellCheck="false"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
@@ -105,7 +124,7 @@ const Chatbot = () => {
             required
           />
           <SendButton className="send-btn" onClick={handleSendMessage}>
-          ↑
+            ↑
           </SendButton>
         </ChatInput>
       </ChatbotContainer>

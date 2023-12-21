@@ -39,8 +39,14 @@ const Timeline = () => {
     <Section id="about">
       <SectionTitle>About Me</SectionTitle>
       <SectionText>
-      The purpose of JavaScript Mastery is to help aspiring and established developers to take their development skills to the next level and build awesome apps.
-      </SectionText>
+      Hi, I'm Shane Koester, a student of Centennial College. With a focus 
+      on Machine Learning and Artificial Intelligence, I am committed to 
+      pushing the boundaries of innovation. From Chess Bots, to Chat-
+      Bots, to creating Facial Recognition software, I've become 
+      equipped with a keen understanding of the newest cutting-edge technologies
+        </SectionText>
+
+        
       <CarouselContainer ref={carouselRef} onScroll={handleScroll}>
         <>
           {TimeLineData.map((item, index) => (
