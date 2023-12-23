@@ -31,7 +31,7 @@ yarn-error.log*
 .env.production.local
 .env
 
-src\components\Chatbot\env.js
+env.js
 
 # vercel
 .vercel

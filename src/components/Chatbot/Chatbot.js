@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Section, SectionTitle } from '../../styles/GlobalComponents';
 import { ChatbotContainer, Chatbox, ChatMessage, ChatInput, StyledTextarea, SendButton } from './ChatbotStyles';
-import { OPENAI_API_KEY, OPENAI_ASS_ID } from "./env.js"
+import { OPENAI_API_KEY, OPENAI_ASS_ID } from "../../../env.js"
 const OpenAI = require("openai");
 
 const Chatbot = () => {
