@@ -12,13 +12,14 @@ const GlobalStyles = createGlobalStyle`
   html {
     font-size: 62.5%;
     scroll-behavior: smooth;
-
+    scroll-Snap-Type: y mandatory;
   }
   body {
     font-family: ${props => props.theme.fonts.main};
     font-size: 1.6rem;
     background: ${props => props.theme.colors.background1};
     color: ${props => props.theme.colors.primary1};
+    scroll-Snap-Type: y mandatory;
     cursor: default;
 
   }

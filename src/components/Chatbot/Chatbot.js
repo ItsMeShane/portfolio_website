@@ -20,7 +20,7 @@ const Chatbot = () => {
   ];
 
   const openai = new OpenAI({
-    apiKey: 'API_KEY_HERE',
+    apiKey: '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',
     dangerouslyAllowBrowser: true,
   });
 
@@ -55,7 +55,7 @@ const Chatbot = () => {
 
       // Use runs to wait for the assistant response and then retrieve it
       const run = await openai.beta.threads.runs.create(thread.id, {
-        assistant_id: "ASSISTANT_ID_HERE",
+        assistant_id: "asst_IauY9HcmhCfWGwG4TsWWqIai",
       });
 
       let runStatus = await openai.beta.threads.runs.retrieve(thread.id, run.id);
