@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Section, SectionDivider, SectionTitle } from '../../styles/GlobalComponents';
+import { Section, SectionTitle } from '../../styles/GlobalComponents';
 import { ChatbotContainer, Chatbox, ChatMessage, ChatInput, StyledTextarea, SendButton } from './ChatbotStyles';
+import { OPENAI_API_KEY, OPENAI_ASS_ID } from "./env.js"
 const OpenAI = require("openai");
 
 const Chatbot = () => {
@@ -20,8 +21,8 @@ const Chatbot = () => {
   ];
 
   const openai = new OpenAI({
-    apiKey: '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',
-    dangerouslyAllowBrowser: true,
+    apiKey: OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true
   });
 
   const getRandomPlaceholder = () => {
@@ -55,7 +56,7 @@ const Chatbot = () => {
 
       // Use runs to wait for the assistant response and then retrieve it
       const run = await openai.beta.threads.runs.create(thread.id, {
-        assistant_id: "asst_IauY9HcmhCfWGwG4TsWWqIai",
+        assistant_id: OPENAI_ASS_ID
       });
 
       let runStatus = await openai.beta.threads.runs.retrieve(thread.id, run.id);
