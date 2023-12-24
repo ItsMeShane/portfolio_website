@@ -14,6 +14,19 @@ const Home = () => {
     <Layout>
       <Section grid>
         <Hero />
+        <img
+  src="/images/face.png"
+  alt="Face"
+  style={{
+    maxWidth: "400px",
+    userDrag: "none",
+    userSelect: "none",
+    MozUserSelect: "none",
+    WebkitUserDrag: "none",
+    WebkitUserSelect: "none",
+    msUserSelect: "none"
+  }}
+/>
         <BgAnimation />
       </Section>
       <Chatbot />
