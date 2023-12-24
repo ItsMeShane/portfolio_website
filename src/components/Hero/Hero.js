@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Section, SectionTitle } from '../../styles/GlobalComponents';
 import Button from '../../styles/GlobalComponents/Button';
 import { LeftSection, TypeWritter } from './HeroStyles';
+import Photo from './Photo';
 
 const Hero = (props) => {
     const [text, setText] = useState('');
@@ -62,7 +63,7 @@ const Hero = (props) => {
                 </TypeWritter>
                 <Button onClick={() => handleButtonClick()}> ↓ </Button>
             </LeftSection>
-            {/* <img src="/images/face.png" alt="Face" style={{ maxWidth: "400px" }}/> */}
+            {/* <Photo /> */}
         </Section>
     );
 };
