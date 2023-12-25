@@ -163,6 +163,24 @@ export const StyledTextarea = styled.textarea`
   color: #fff; 
 `;
 
+
+const bounceAnimation = keyframes`
+  0%,50%, 100% {
+     font-size: 3rem;
+}
+  25%, 75% {
+     font-size: 3.5rem; 
+  }
+
+`;
+const spinAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
 export const ChatButton = styled.button`
   background-color: transparent;
   min-height: 55px;
@@ -174,12 +192,13 @@ export const ChatButton = styled.button`
   cursor: pointer;
   font-size: 3rem;
   transition: font-size 0.25s ease; 
-
+  
   &:hover {
     font-size: 3.5rem; 
   }
   &[id="pmt"]:active {
     font-size: 3.3rem; 
+    animation: ${spinAnimation} 0.2s linear;
   }
 `;
 
