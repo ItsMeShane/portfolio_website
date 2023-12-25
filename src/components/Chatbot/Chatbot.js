@@ -120,7 +120,7 @@ const Chatbot = () => {
             onKeyDown={handleTextareaKeyDown}
             required
           />
-          <ChatButton onClick={setNextPrompt}>
+          <ChatButton onClick={setNextPrompt} id="pmt">
             🎲
           </ChatButton>
           <ChatButton onClick={handleSendMessage}>

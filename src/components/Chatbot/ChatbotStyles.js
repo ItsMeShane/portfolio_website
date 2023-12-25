@@ -6,10 +6,13 @@ export const ChatbotContainer = styled.div`
   /* flex-direction: column; */
   align-self: center;
   width: 80%;
+  height: 80%;
   margin: 20px;
   overflow: hidden;
   font-size: 2.2rem;
 
+  
+/* border:3px solid ; */
   
 `;
 
@@ -55,23 +58,70 @@ to {
 }
 `;
 
+
+
 export const ChatMessage = styled.div`
   margin-bottom: 10px;
   width: fit-content;
-  max-width:80%;
+  max-width: 80%;
   padding: 8px;
+  transition: transform 0.3s ease;
   animation: ${messageFadeIn} 0.5s ease;
 
   &.incoming {
-    background-color: purple;
-    border-radius: 15px 15px 15px 0;
-    margin-left: 0; 
+    background: linear-gradient(to right, #4d004d, #990099, #4d004d);
+    border-radius: 15px 15px 15px 15px;
+    margin-left: 0;
+
+    &:hover {
+      transform: translateX(10px);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 100%;
+      width: 10px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: inherit;
+      transition: transform 0.3s ease;
+      transform-origin: left center;
+      transform: scaleX(0);
+    }
+
+    &:hover::before {
+      transform: scaleX(1);
+    }
   }
 
   &.outgoing {
-    background-color: darkblue;
-    border-radius: 15px 15px 0 15px;
-    margin-left: auto; 
+    background: linear-gradient(to right, #12254c, #3366cc, #12254c);
+    border-radius: 15px 15px 15px 15px;
+    margin-left: auto;
+
+    &:hover {
+      transform: translateX(-10px);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 100%;
+      width: 10px;
+      background: #878b92;
+      border-radius: inherit;
+      transition: transform 0.3s ease;
+      transform-origin: right center;
+      transform: scaleX(0);
+    }
+
+    &:hover::before {
+      transform: scaleX(1);
+    }
   }
 `;
 
@@ -98,17 +148,22 @@ export const StyledTextarea = styled.textarea`
 `;
 
 export const ChatButton = styled.button`
-  background-color: transparent; 
+  background-color: transparent;
   min-height: 55px;
-  min-width:  55px;
+  min-width: 55px;
   max-height: 55px;
-  max-width:  55px;
-  color: #fff; 
+  max-width: 55px;
+  color: #fff;
   border: none;
   cursor: pointer;
   font-size: 3rem;
-  
-  /* border: 1px solid #ccc; */
-  /* border-radius: 15px; */
+  transition: font-size 0.25s ease; 
+
+  &:hover {
+    font-size: 3.5rem; 
+  }
+  &[id="pmt"]:active {
+    font-size: 3.3rem; 
+  }
 `;
 
