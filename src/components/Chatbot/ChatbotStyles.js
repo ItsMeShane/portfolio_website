@@ -59,68 +59,84 @@ to {
 `;
 
 
-
+let t = "0.5s";
 export const ChatMessage = styled.div`
   margin-bottom: 10px;
   width: fit-content;
   max-width: 80%;
   padding: 8px;
-  transition: transform 0.3s ease;
+  
   animation: ${messageFadeIn} 0.5s ease;
+  transition: transform ${t} ease ${t};
 
   &.incoming {
+    position: relative; 
     background: linear-gradient(to right, #4d004d, #990099, #4d004d);
-    border-radius: 15px 15px 15px 15px;
+    border-radius: 15px 15px 15px 0;
     margin-left: 0;
+    display: flex;
+    align-items: center; 
 
     &:hover {
       transform: translateX(10px);
+      transition: transform ${t} ease ${t};
     }
 
     &::before {
       content: '';
       position: absolute;
-      top: 0;
-      bottom: 0;
+      top: calc(50% + 7.5px);  
       right: 100%;
       width: 10px;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: inherit;
-      transition: transform 0.3s ease;
+      height: 0%;
+      background: #3c003c;
+      border-radius: 15px 0 0 15px;
+      transition: height ${t} ease;
       transform-origin: left center;
-      transform: scaleX(0);
+      transform: translateY(-50%); 
+      transition-delay: ${t*2};
     }
 
     &:hover::before {
-      transform: scaleX(1);
+      transform: scaleX(1) translateY(-50%); 
+      transition-delay: 0s;
+      height: calc(100% - 15px);
     }
   }
+  
 
   &.outgoing {
+    position:relative;
     background: linear-gradient(to right, #12254c, #3366cc, #12254c);
-    border-radius: 15px 15px 15px 15px;
+    border-radius: 15px 15px 0 15px;
     margin-left: auto;
+    display: flex;
+    align-items: center; 
 
     &:hover {
       transform: translateX(-10px);
+      transition: transform ${t} ease ${t};
     }
 
     &::before {
       content: '';
       position: absolute;
-      top: 0;
-      bottom: 0;
+      top: calc(50% + 7.5px);  
       left: 100%;
       width: 10px;
-      background: #878b92;
-      border-radius: inherit;
-      transition: transform 0.3s ease;
+      height: 0%;
+      background: #0f2042;
+      border-radius: 0 15px 15px 0;
+      transition: height ${t} ease;
       transform-origin: right center;
-      transform: scaleX(0);
+      transform: translateY(-50%); 
+      transition-delay: ${t*2};
     }
 
     &:hover::before {
-      transform: scaleX(1);
+      transform: scaleX(1) translateY(-50%); 
+      transition-delay: 0s;
+      height: calc(100% - 15px);
     }
   }
 `;
