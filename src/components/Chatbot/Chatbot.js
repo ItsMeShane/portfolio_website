@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Section, SectionTitle } from '../../styles/GlobalComponents';
-import { ChatbotContainer, Chatbox, ChatMessage, ChatInput, StyledTextarea, SendButton } from './ChatbotStyles';
+import { ChatbotContainer, Chatbox, ChatMessage, ChatInput, StyledTextarea, ChatButton } from './ChatbotStyles';
 import { OPENAI_API_KEY, OPENAI_ASS_ID } from "../../../env.js"
+import { chatMessagePrompts } from '../../constants/constants';
+
 const OpenAI = require("openai");
+let promptIndex = 0;
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
@@ -10,26 +13,13 @@ const Chatbot = () => {
   ]);
 
   const [newMessage, setNewMessage] = useState('');
-  const [placeholderIndex, setPlaceholderIndex] = useState(0); // Track the current index of the placeholder
   const chatboxRef = useRef(null);
-  const placeholderTexts = [
-    "Tell me about Shane's work experience.",
-    "What kind of projects has Shane worked on?",
-    "Tell me about this website.",
-    "How can I contact Shane?",
-    "Ask me anything!",
-  ];
 
   const openai = new OpenAI({
     apiKey: OPENAI_API_KEY,
     dangerouslyAllowBrowser: true
   });
 
-  const getRandomPlaceholder = () => {
-    const newIndex = Math.floor(Math.random() * placeholderTexts.length);
-    setPlaceholderIndex(newIndex);
-    return placeholderTexts[newIndex];
-  };
 
   const handleSendMessage = async () => {
     if (newMessage.trim() === '') {
@@ -85,6 +75,15 @@ const Chatbot = () => {
     }
   };
 
+
+  const setNextPrompt = () => {
+    if (promptIndex === chatMessagePrompts.length) {
+      promptIndex = 0;
+    }
+    setNewMessage(chatMessagePrompts[promptIndex]);
+    promptIndex++;
+  };
+
   // Auto-scroll to the bottom when messages change
   useEffect(() => {
     if (chatboxRef.current) {
@@ -96,10 +95,6 @@ const Chatbot = () => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault(); // Enter submits message // Shift+Enter adds new line
       handleSendMessage();
-
-      if (document.getElementById('txtArea').textContent.trim() != "") {
-        getRandomPlaceholder();
-      }
     }
   };
 
@@ -116,17 +111,21 @@ const Chatbot = () => {
         </Chatbox>
 
         <ChatInput>
-          <StyledTextarea id="txtArea"
-            placeholder={newMessage.trim() === '' ? placeholderTexts[placeholderIndex] : ''} // Use random placeholder only when the input is empty
+          <StyledTextarea
+            id="txtArea"
+            placeholder="Send a message..."
             spellCheck="false"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             onKeyDown={handleTextareaKeyDown}
             required
           />
-          <SendButton className="send-btn" onClick={handleSendMessage}>
+          <ChatButton onClick={setNextPrompt}>
+            🎲
+          </ChatButton>
+          <ChatButton onClick={handleSendMessage}>
             ↑
-          </SendButton>
+          </ChatButton>
         </ChatInput>
       </ChatbotContainer>
     </Section>

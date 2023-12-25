@@ -2,13 +2,15 @@ import styled, { keyframes } from 'styled-components';
 
 // Styled components for the chatbot
 export const ChatbotContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: block;
+  /* flex-direction: column; */
   align-self: center;
   width: 80%;
   margin: 20px;
   overflow: hidden;
   font-size: 2.2rem;
+
+  
 `;
 
 
@@ -17,7 +19,6 @@ flex: 1;
 padding: 15px;
 max-height: 400px;
 min-height: 400px;
-// height: 400px;
 
 overflow-y: auto;
 scroll-behavior: smooth; /* Enable smooth scrolling behavior */
@@ -96,13 +97,18 @@ export const StyledTextarea = styled.textarea`
   color: #fff; 
 `;
 
-export const SendButton = styled.button`
+export const ChatButton = styled.button`
   background-color: transparent; 
-  height: 65px;
-  width: 65px;
+  min-height: 55px;
+  min-width:  55px;
+  max-height: 55px;
+  max-width:  55px;
   color: #fff; 
   border: none;
-  padding: 8px 12px;
   cursor: pointer;
+  font-size: 3rem;
+  
+  /* border: 1px solid #ccc; */
+  /* border-radius: 15px; */
 `;
 
