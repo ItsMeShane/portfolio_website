@@ -99,7 +99,7 @@ const Chatbot = () => {
   };
 
   return (
-    <Section>
+    <Section id='chatbot'>
       <SectionTitle>Talk To Me!</SectionTitle>
       <ChatbotContainer>
         <Chatbox className="chatbox" ref={chatboxRef}>

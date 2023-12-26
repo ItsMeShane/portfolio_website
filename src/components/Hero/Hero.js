@@ -53,7 +53,7 @@ const Hero = (props) => {
     };
 
     return (
-        <Section row nopadding>
+        <Section id='hero'>
             <LeftSection>
                 <SectionTitle main center>
                     Hey, I'm Shane.
