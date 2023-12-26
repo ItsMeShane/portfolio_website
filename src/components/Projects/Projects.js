@@ -1,39 +1,36 @@
+// Projects.js
 import React from 'react';
-
-import { BlogCard, CardInfo, ExternalLinks, GridContainer, HeaderThree, Hr, Tag, TagList, TitleContent, UtilityList, Img } from './ProjectsStyles';
-import { Section, SectionDivider, SectionTitle } from '../../styles/GlobalComponents';
+import { ProjectWrapper, VideoWrapper, DetailsWrapper, ProjectTitle, ProjectDescription, ProjectTags, ProjectLink, ProjectsContainer } from './ProjectsStyles';
+import { Section, SectionTitle } from '../../styles/GlobalComponents';
 import { projects } from '../../constants/constants';
 
 const Projects = () => (
-    <Section nopadding id="projects">
-    <SectionDivider />
-    <SectionTitle main>Projects</SectionTitle>
-    <GridContainer>
-      {projects.map((p, i) => {
-        return (
-          <BlogCard key={i}>
-          <Img src={p.image} />
-            <TitleContent>
-              <HeaderThree title>{p.title}</HeaderThree>
-              <Hr />
-            </TitleContent>
-            <CardInfo className="card-info">{p.description}</CardInfo>
-            <div>
-              <TitleContent>Stack</TitleContent>
-              <TagList>
-                {p.tags.map((t, i) => {
-                  return <Tag key={i}>{t}</Tag>;
-                })}
-              </TagList>
-            </div>
-            <UtilityList>
-              <ExternalLinks href={p.visit}>Code</ExternalLinks>
-              <ExternalLinks href={p.source}>Source</ExternalLinks>
-            </UtilityList>
-          </BlogCard>
-        );
-      })}
-    </GridContainer>
+  <Section id="projects" snap>
+    <SectionTitle>Projects</SectionTitle>
+    <ProjectsContainer>
+      {projects.map(({ id, title, description, ytEmbedLink, tags, githubRepo }) => (
+        <ProjectWrapper key={id}>
+          <VideoWrapper>
+            <iframe
+              width="100%"
+              height="100%"
+              src={`${ytEmbedLink}`}
+              title="Video player"
+              frameBorder="0"
+              // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; web-share"
+              allowFullScreen
+            ></iframe>
+            {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/BtHpGZDO1P8?si=5gb4vQbfw8_OWUp5&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */}
+          </VideoWrapper>
+          {/* <DetailsWrapper>
+              <ProjectTitle>{title}</ProjectTitle>
+              <ProjectDescription>{description}</ProjectDescription>
+              <ProjectTags>{tags.join(', ')}</ProjectTags>
+              <ProjectLink href={githubRepo} target="_blank">GitHub Repository</ProjectLink>
+            </DetailsWrapper> */}
+        </ProjectWrapper>
+      ))}
+    </ProjectsContainer>
   </Section>
 );
 
